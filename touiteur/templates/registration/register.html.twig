@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription / Touiteur{% endblock %}
+
+{% block body %}
+<main>
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1 class="register__title">Rejoignez Touiteur</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_widget(registrationForm.name) }}
+        {{ form_widget(registrationForm.email) }}
+        {{ form_widget(registrationForm.username) }}
+        {{ form_widget(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+        }) }}
+
+        <button type="submit" class="btn register__submit">Inscription</button>
+    {{ form_end(registrationForm) }}
+    <p class="register__terms">En vous inscrivant, vous acceptez les <a href="#">Conditions d'Utilisation</a> et la <a href="#">Politique de Confidentialité</a>, incluant l'<a href="#">Utilisation de Cookies</a>.</p>
+    <p class="register__login-redirect">Vous avez déjà un compte ? <a href="/login">Connectez-vous</a></p>
+</main>
+{% endblock %}

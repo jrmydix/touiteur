@@ -1,0 +1,27 @@
+.register__title {
+  margin-bottom: 24px;
+}
+
+.register__submit {
+  margin-bottom: 16px;
+}
+
+.register__terms {
+  margin-bottom: 8px;
+}
+
+.register__terms,
+.register__login-redirect {
+  font-size: 12px;
+  color: #919294;
+}
+
+.register__terms a,
+.register__login-redirect a {
+  text-decoration: none;
+  color: $primary-color;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

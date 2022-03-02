@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion / Touiteur
+{% endblock %}
+
+{% block body %}
+<main>
+	{% if error %}
+		<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+
+	{% if app.user %}
+		<p>
+			Connecté en tant que
+			{{ app.user.username }},
+			<a href="{{ path('app_logout') }}">Déconnexion</a>
+		</p>
+
+	{% else %}
+		<form method="post">
+			<h1 class="register__title">Connexion</h1>
+			<input type="email" value="{{ last_username }}" placeholder="Email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+			<input type="password" placeholder="Mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+			<button class="btn register__submit" type="submit">Connexion</button>
+
+			<p class="register__login-redirect">Vous n'avez pas de compte ?
+				<a href="/register">Inscrivez-vous</a>
+			</p>
+		</form>
+	{% endif %}
+</main>
+{% endblock %}

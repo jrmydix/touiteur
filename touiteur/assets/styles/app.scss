@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import "./reset";
+@import "./variables";
+
+@import "./components";
+@import "./nav";
+
+@import "./pages/home";
+@import "./pages/register";
+@import "./pages/login";
+@import "./pages/reset-password";
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  padding: 32px;
+  transition: background-color .3s;
+}
