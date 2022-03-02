@@ -4,32 +4,32 @@
 {% endblock %}
 
 {% block body %}
-<main>
-	{% if error %}
-		<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-	{% endif %}
+	<main>
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
 
-	{% if app.user %}
-		<p>
-			Connecté en tant que
-			{{ app.user.username }},
-			<a href="{{ path('app_logout') }}">Déconnexion</a>
-		</p>
+		{% if app.user %}
+			<p class="register__login-redirect">Connecté en tant que
+				{{ app.user.username }}.</p>
+			<a class="register__login-reset" href="{{ path('app_logout') }}">Déconnexion</a>
+		{% else %}
+			<form method="post">
+				<h1 class="register__title">Connexion</h1>
+				<input type="email" value="{{ last_username }}" placeholder="Email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+				<input type="password" placeholder="Mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-	{% else %}
-		<form method="post">
-			<h1 class="register__title">Connexion</h1>
-			<input type="email" value="{{ last_username }}" placeholder="Email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-			<input type="password" placeholder="Mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<button class="btn register__submit" type="submit">Connexion</button>
 
-			<button class="btn register__submit" type="submit">Connexion</button>
+				<p class="register__login-redirect">Vous n'avez pas de compte ?
+					<a href="/register">Inscrivez-vous</a>
+				</p>
 
-			<p class="register__login-redirect">Vous n'avez pas de compte ?
-				<a href="/register">Inscrivez-vous</a>
-			</p>
-		</form>
-	{% endif %}
-</main>
+				<a href="{{ path('app_forgot_password_request') }}" class="register__login-reset">Mot de passe oublié</a>
+
+			</form>
+		{% endif %}
+	</main>
 {% endblock %}
