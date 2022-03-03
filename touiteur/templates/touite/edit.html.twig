@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le touite / Touiteur
+{% endblock %}
+
+{% block body %}
+	<main class="page--default">
+		{{ include('touite/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+		<a href="{{ path('app_touite_index') }}">Retour aux touites</a>
+
+		{{ include('touite/_delete_form.html.twig') }}
+	</main>
+{% endblock %}

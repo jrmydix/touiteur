@@ -6,6 +6,7 @@ nav {
   border-top: 1px solid $link-hover;
   padding: 8px 32px;
   transition: border-top 0.5s;
+  background-color: $bg;
 
   ul {
     display: flex;
@@ -43,6 +44,7 @@ nav {
   border-bottom: 1px solid $link-hover;
   padding: 8px 16px;
   transition: border-bottom 0.5s;
+  background-color: $bg;
 
   &__img-route {
     display: flex;

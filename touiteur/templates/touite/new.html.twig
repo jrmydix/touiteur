@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Écrire un nouveau touite / Touiteur
+{% endblock %}
+
+{% block body %}
+	<main class="page--default">
+		{{ include('touite/_form.html.twig') }}
+
+		{# <a href="{{ path('app_touite_index') }}">back to list</a> #}
+	</main>
+{% endblock %}

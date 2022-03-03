@@ -46,11 +46,11 @@ class TouiteurAuthenticator extends AbstractLoginFormAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($this->redirectToRoute('app_home'));
+            return new RedirectResponse($this->redirectToRoute('app_touite_index'));
         }
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_home'));
+        return new RedirectResponse($this->urlGenerator->generate('app_touite_index'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

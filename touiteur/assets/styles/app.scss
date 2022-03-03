@@ -23,13 +23,7 @@ html.dark body {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   min-height: 100vh;
-  padding: 32px;
   transition: background-color 0.3s;
   background-color: $bg;
 }

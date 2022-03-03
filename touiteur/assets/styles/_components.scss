@@ -1,9 +1,9 @@
 .btn {
-  padding: 8px 24px;
+  padding: $size $size3;
   font-weight: 600;
   background-color: $primary-color;
   color: #fff;
-  border-radius: 16px;
+  border-radius: $size2;
   border: 1px solid $primary-color;
   margin: auto;
   display: block;
@@ -15,7 +15,7 @@
 }
 
 input {
-  margin-bottom: 16px;
+  margin-bottom: $size2;
   background-clip: padding-box;
   background-color: transparent;
   border: 1px solid #ced4da;
@@ -33,4 +33,13 @@ input {
     border-color: $primary-color;
     outline: 0;
   }
+}
+
+.page--default {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 48px 32px 62px 32px;
 }
