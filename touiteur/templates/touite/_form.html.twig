@@ -1,4 +1,5 @@
 {{ form_start(form) }}
+    <button class="btn btn--touite">{{ button_label|default('Touiter') }}</button>
+
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Touiter') }}</button>
 {{ form_end(form) }}

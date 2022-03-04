@@ -1,0 +1,30 @@
+.compose-touite {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 64px 16px 62px;
+  justify-content: flex-end;
+}
+
+.svg--arrow-back-home {
+  position: absolute;
+  left: 16px;
+  top: 72px;
+  fill: $text;
+  width: 20px;
+  height: 20px;
+}
+
+.btn--touite {
+  width: unset;
+  margin-right: unset;
+  margin-bottom: 16px;
+  padding: 6px $size3;
+}
+
+#touite label {
+  display: none;
+}
+
+html.dark .svg--arrow-back-home {
+  fill: $text-dark;
+}

@@ -1,0 +1,23 @@
+body {
+  color: $text;
+}
+
+main {
+  min-height: 100vh;
+  transition: background-color 0.3s;
+  background-color: $bg;
+}
+
+html.dark {
+  body {
+    color: $text-dark;
+  }
+
+  main {
+    background-color: $bg-dark;
+  }
+
+  svg {
+    fill: $text-dark;
+  }
+}

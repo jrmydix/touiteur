@@ -39,7 +39,7 @@ class TouiteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_touite_show', methods: ['GET'])]
+    #[Route('/status/{id}', name: 'app_touite_show', methods: ['GET'])]
     public function show(Touite $touite): Response
     {
         return $this->render('touite/show.html.twig', [
@@ -47,7 +47,7 @@ class TouiteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_touite_edit', methods: ['GET', 'POST'])]
+    #[Route('/status/{id}/edit', name: 'app_touite_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Touite $touite, TouiteRepository $touiteRepository): Response
     {
         $form = $this->createForm(TouiteType::class, $touite);
@@ -64,7 +64,7 @@ class TouiteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_touite_delete', methods: ['POST'])]
+    #[Route('/status/{id}', name: 'app_touite_delete', methods: ['POST'])]
     public function delete(Request $request, Touite $touite, TouiteRepository $touiteRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$touite->getId(), $request->request->get('_token'))) {

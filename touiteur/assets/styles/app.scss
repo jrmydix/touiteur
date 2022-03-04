@@ -1,37 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
-@import "./reset";
-@import "./variables";
+@import "./abstracts/variables";
 
-@import "./components";
-@import "./nav";
+@import "./base/reset";
+@import "./base/typography";
+
+@import "./layout/navigation";
+@import "./layout/forms";
+
+@import "./components/buttons";
 
 @import "./pages/home";
 @import "./pages/register";
 @import "./pages/login";
 @import "./pages/reset-password";
+@import "./pages/compose-touite";
+@import "./pages/show-touite";
 
-* {
-  font-family: "Roboto", sans-serif;
-}
-
-body {
-  color: $text;
-}
-
-html.dark body {
-  color: $text-dark;
-}
-
-main {
-  min-height: 100vh;
-  transition: background-color 0.3s;
-  background-color: $bg;
-}
-
-html.dark main {
-  background-color: $bg-dark;
-}
-
-html.dark svg {
-  fill: $text-dark;
-}
+@import "./themes/theme";

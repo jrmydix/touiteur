@@ -7,6 +7,7 @@ nav {
   padding: 8px 32px;
   transition: border-top 0.5s;
   background-color: $bg;
+  z-index: 99;
 
   ul {
     display: flex;
@@ -19,6 +20,8 @@ nav {
       transition: background-color 0.2s;
       border-radius: 50%;
       padding: 8px;
+      width: 42px;
+      height: 42px;
 
       &:hover {
         background-color: rgba(15, 20, 25, 0.1);
@@ -45,6 +48,7 @@ nav {
   padding: 8px 16px;
   transition: border-bottom 0.5s;
   background-color: $bg;
+  z-index: 99;
 
   &__img-route {
     display: flex;
@@ -189,9 +193,20 @@ nav {
 }
 
 html.dark {
+  nav {
+    ul {
+      & li {
+        &:hover {
+          background-color: $link-hover-dark;
+        }
+      }
+    }
+  }
+
   nav,
   .header {
     border-color: $link-hover-dark;
+    background-color: $bg-dark;
   }
 
   .mobile__settings {

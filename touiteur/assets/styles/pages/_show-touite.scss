@@ -1,0 +1,53 @@
+.show-touite {
+  padding: 112px 16px 58px;
+
+  &--author {
+    padding: 66px 16px 58px;
+
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+    }
+  }
+
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+}
+
+.author__infos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: $size2;
+  font-weight: 300;
+  color: rgb(83, 100, 113);
+  font-size: 15px;
+
+  &--text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &--name {
+    color: $text;
+    font-weight: 700;
+  }
+}
+
+.touite__content {
+  font-size: 23px;
+  color: $text;
+  line-height: 28px;
+  margin-bottom: $size2;
+}
+
+.touite__date {
+  color: rgb(83, 100, 113);
+  font-size: 15px;
+}
