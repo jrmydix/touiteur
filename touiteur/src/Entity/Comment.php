@@ -31,6 +31,10 @@ class Comment
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
     private $replies;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $author;
+
     public function __toString(){
         return $this->touite;
     }
@@ -120,6 +124,18 @@ class Comment
                 $reply->setParent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

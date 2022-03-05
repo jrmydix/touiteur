@@ -57,12 +57,15 @@ class TouiteController extends AbstractController
     #[Route('/status/{id}', name: 'app_touite_show', methods: ['GET', 'POST'])]
     public function show(Touite $touite, Request $request, CommentRepository $commentRepository): Response
     {
+        $user = $this->security->getUser();
+
         $comment = new Comment();
         $commentForm = $this-> createForm(CommentType::class, $comment);
         $commentForm->handleRequest($request);
 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $comment->setTouite($touite);
+            $comment->setAuthor($user);
             $commentRepository->add($comment);
 
             return $this->redirectToRoute('app_touite_show', ['id' => $touite->getId()], Response::HTTP_SEE_OTHER);
