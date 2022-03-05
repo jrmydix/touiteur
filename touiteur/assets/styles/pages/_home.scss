@@ -134,6 +134,47 @@ html.dark {
     }
   }
 
+  .touite__actions {
+    color: rgb(110, 118, 125);
+
+    svg {
+      fill: rgb(110, 118, 125);
+    }
+
+    &--comment {
+      &:hover {
+        color: rgb(29, 155, 240);
+
+        svg {
+          background-color: rgba(29, 155, 240, 0.1);
+          fill: rgb(29, 155, 240);
+        }
+      }
+    }
+
+    &--retouite {
+      &:hover {
+        color: rgb(0, 186, 124);
+
+        svg {
+          background-color: rgba(0, 186, 124, 0.1);
+          fill: rgb(0, 186, 124);
+        }
+      }
+    }
+
+    &--like {
+      &:hover {
+        color: rgb(249, 24, 128);
+
+        svg {
+          background-color: rgba(249, 24, 128, 0.1);
+          fill: rgb(249, 24, 128);
+        }
+      }
+    }
+  }
+
   .btn--tweet {
     box-shadow: rgba(217, 217, 217, 0.2) 0px 0px 5px,
       rgba(217, 217, 217, 0.25) 0px 1px 4px 1px;

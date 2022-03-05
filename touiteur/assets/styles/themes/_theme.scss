@@ -21,3 +21,12 @@ html.dark {
     fill: $text-dark;
   }
 }
+
+.page--default {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 48px 32px 62px 32px;
+}

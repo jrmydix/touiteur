@@ -1,0 +1,13 @@
+.alert {
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  position: relative;
+}
+
+.alert-danger {
+  background-color: #e7d1d1;
+  border-color: #dbbaba;
+  color: #510f0f;
+}
