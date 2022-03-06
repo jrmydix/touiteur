@@ -40,16 +40,10 @@
 		<p class="touite__date">{{ touite.date ? touite.date|date('H:i · d/m/y') : '' }}
 			· Touiteur</p>
 
-		{# Calcul du nombre de réponses associées au touite #}
-		{% set commentsNbr = 0 %}
-		{% for comment in touite.comments %}
-			{% set commentsNbr = commentsNbr + 1 %}
-		{% endfor %}
-
 		<div class="touite__stats">
 			<ul>
 				<li>
-					<span>{{ commentsNbr }}</span>
+					<span>{{ touite.comments|length }}</span>
 					Réponses
 				</li>
 				<li>

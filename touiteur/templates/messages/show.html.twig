@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ message.sender.name }}
+	/ Touiteur
+{% endblock %}
+
+{% block body %}
+	<main class="page--default">
+		<div>
+			<p>{{ message.content }}</p>
+			<p class="comment__author">{{ message.date|date }}</p>
+		</div>
+	</main>
+{% endblock %}

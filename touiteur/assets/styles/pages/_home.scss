@@ -95,31 +95,6 @@ a.touite__container {
   }
 }
 
-.btn--tweet {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  right: 24px;
-  bottom: 88px;
-  z-index: 999;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  transition: box-shadow 0.2s;
-  background-color: $primary-color;
-  box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 8px,
-    rgba(101, 119, 134, 0.25) 0px 1px 3px 1px;
-
-  svg {
-    width: 24px;
-    height: 24px;
-    fill: $bg;
-    line-height: 0;
-  }
-}
-
 html.dark {
   .touite__container {
     color: $text-dark;
@@ -172,15 +147,6 @@ html.dark {
           fill: rgb(249, 24, 128);
         }
       }
-    }
-  }
-
-  .btn--tweet {
-    box-shadow: rgba(217, 217, 217, 0.2) 0px 0px 5px,
-      rgba(217, 217, 217, 0.25) 0px 1px 4px 1px;
-
-    svg {
-      fill: $bg;
     }
   }
 }

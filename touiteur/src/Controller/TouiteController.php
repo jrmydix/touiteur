@@ -12,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 
 #[Route('/')]
 class TouiteController extends AbstractController
@@ -25,13 +24,6 @@ class TouiteController extends AbstractController
         ]);
     }
 
-    private $security;
-
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
-
     #[Route('/compose/touite', name: 'app_touite_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TouiteRepository $touiteRepository): Response
     {
@@ -39,10 +31,8 @@ class TouiteController extends AbstractController
         $form = $this->createForm(TouiteType::class, $touite);
         $form->handleRequest($request);
 
-        $user = $this->security->getUser();
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $touite->setAuthor($user);
+            $touite->setAuthor($this->getUser());
 
             $touiteRepository->add($touite);
             return $this->redirectToRoute('app_touite_index', [], Response::HTTP_SEE_OTHER);
@@ -57,15 +47,13 @@ class TouiteController extends AbstractController
     #[Route('/status/{id}', name: 'app_touite_show', methods: ['GET', 'POST'])]
     public function show(Touite $touite, Request $request, CommentRepository $commentRepository): Response
     {
-        $user = $this->security->getUser();
-
         $comment = new Comment();
         $commentForm = $this-> createForm(CommentType::class, $comment);
         $commentForm->handleRequest($request);
 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $comment->setTouite($touite);
-            $comment->setAuthor($user);
+            $comment->setAuthor($this->getUser());
             $commentRepository->add($comment);
 
             return $this->redirectToRoute('app_touite_show', ['id' => $touite->getId()], Response::HTTP_SEE_OTHER);
