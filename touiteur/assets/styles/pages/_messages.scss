@@ -1,0 +1,37 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 16px 58px 16px;
+  justify-content: flex-start;
+}
+
+a.messages__container {
+  text-decoration: none;
+}
+
+.messages__container {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr;
+  column-gap: 16px;
+  color: rgb(83, 100, 113);
+  width: 100%;
+  border-bottom: 1px solid #f5f7f8;
+  margin-top: $size2;
+  padding-bottom: $size2;
+  font-size: 15px;
+}
+
+.messages__author {
+  margin-bottom: 8px;
+
+  &--name {
+    color: $text;
+    font-weight: 700;
+  }
+
+  &--img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+}

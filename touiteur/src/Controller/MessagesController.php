@@ -16,7 +16,7 @@ class MessagesController extends AbstractController
     public function index(MessageRepository $messageRepository): Response
     {
         return $this->render('messages/index.html.twig', [
-            'messages' => $messageRepository->findAll(),
+            'messages' => $messageRepository->findByUser($this->getUser()),
             'controller_name' => 'MessagesController',
         ]);
     }
@@ -60,5 +60,15 @@ class MessagesController extends AbstractController
             'message' => $message,
             'messageForm' => $messageForm->createView()
         ]);
+    }
+
+    #[Route('/messages/{id}', name: 'app_messages_delete', methods: ['POST'])]
+    public function delete(Request $request, Message $message, MessageRepository $messageRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $message->getId(), $request->request->get('_token'))) {
+            $messageRepository->remove($message);
+        }
+
+        return $this->redirectToRoute('app_messages', [], Response::HTTP_SEE_OTHER);
     }
 }

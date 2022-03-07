@@ -11,5 +11,10 @@
 			<p>{{ message.content }}</p>
 			<p class="comment__author">{{ message.date|date }}</p>
 		</div>
+
+		<form method="post" action="{{ path('app_messages_delete', {'id': message.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer votre message ?');">
+			<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ message.id) }}">
+			<button class="btn btn--touite">Supprimer</button>
+		</form>
 	</main>
 {% endblock %}
