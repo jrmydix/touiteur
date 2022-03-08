@@ -21,7 +21,11 @@
 		{% endif %}
 
 		<div class="author__infos">
-			<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ touite.author }}" class="">
+			{% if touite.author.picture %}
+				<img src="{{ asset('uploads/') }}{{ touite.author.picture }}" alt="{{ touite.author }}">
+			{% else %}
+				<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ touite.author }}">
+			{% endif %}
 			<div class="author__infos--text">
 				<p class="author__infos--name">{{ touite.author }}
 					{% if touite.author.isVerified %}
@@ -83,7 +87,11 @@
 			</div>
 
 			<div class="comment">
-				<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ touite.author }}" class="">
+				{% if app.user.picture %}
+					<img src="{{ asset('uploads/') }}{{ app.user.picture }}" alt="{{ app.user }}">
+				{% else %}
+					<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ app.user }}">
+				{% endif %}
 
 				<div>
 					<p class="comment__answer-to">En réponse à
@@ -100,7 +108,11 @@
 		{% for comment in touite.comments %}
 			<div class="comments__container">
 				<div>
-					<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ comment.author }}" class="comment__author--img">
+					{% if comment.author.picture %}
+						<img src="{{ asset('uploads/') }}{{ comment.author.picture }}" alt="{{ comment.author }}" class="comment__author--img">
+					{% else %}
+						<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ comment.author }}" class="comment__author--img">
+					{% endif %}
 				</div>
 				<div>
 					<p class="comment__author">

@@ -8,7 +8,11 @@
 		{% for touite in touites %}
 			<a href="{{ path('app_touite_show', {'id': touite.id}) }}" class="touite__container">
 				<div>
-					<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ touite.author }}" class="touite__author--img">
+					{% if touite.author.picture %}
+						<img src="{{ asset('uploads/') }}{{ touite.author.picture }}" alt="{{ touite.author }}" class="touite__author--img">
+					{% else %}
+						<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ touite.author }}" class="touite__author--img">
+					{% endif %}
 				</div>
 				<div>
 					<p class="touite__author">

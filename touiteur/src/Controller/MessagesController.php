@@ -31,7 +31,6 @@ class MessagesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $message->setSender($this->getUser());
-            $message->setIsRead(0);
             $messageRepository->add($message);
             return $this->redirectToRoute('app_messages', [], Response::HTTP_SEE_OTHER);
         }
@@ -50,7 +49,6 @@ class MessagesController extends AbstractController
 
         if ($messageForm->isSubmitted() && $messageForm->isValid()) {
             $messageNew->setSender($this->getUser());
-            $messageNew->setIsRead(0);
             $messageRepository->add($messageNew);
 
             return $this->redirectToRoute('app_messages_show', ['id' => $message->getId()], Response::HTTP_SEE_OTHER);

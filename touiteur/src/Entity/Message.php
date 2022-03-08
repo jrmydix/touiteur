@@ -19,9 +19,6 @@ class Message
     #[ORM\Column(type: 'datetime')]
     private $date;
 
-    #[ORM\Column(type: 'boolean')]
-    private $is_read;
-
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'message_sent')]
     #[ORM\JoinColumn(nullable: false)]
     private $sender;
@@ -60,18 +57,6 @@ class Message
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getIsRead(): ?bool
-    {
-        return $this->is_read;
-    }
-
-    public function setIsRead(bool $is_read): self
-    {
-        $this->is_read = $is_read;
 
         return $this;
     }

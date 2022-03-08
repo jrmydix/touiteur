@@ -11,7 +11,11 @@
 	<div class="header">
 		<div class="header__img-route">
 			{% if app.user %}
-				<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ app.user.username }}" class="header__img" id="nav-toggler">
+				{% if app.user.picture %}
+					<img src="{{ asset('uploads/') }}{{ app.user.picture }}" alt="{{ app.user.username }}" class="header__img" id="nav-toggler">
+				{% else %}
+					<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ app.user.username }}" class="header__img" id="nav-toggler">
+				{% endif %}
 			{% else %}
 				<a href="/"><img src="{{ asset('build/images/logo.svg') }}" alt="Touiteur" class="header__img--svg"></a>
 			{% endif %}
@@ -64,7 +68,13 @@
 							</svg>
 						</li>
 					</div>
-					<li><img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ app.user.username }}" class="header__img"></li>
+					<li>
+					{% if app.user.picture %}
+						<img src="{{ asset('uploads/') }}{{ app.user.picture }}" alt="{{ app.user.username }}" class="header__img">
+					{% else %}
+						<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ app.user.username }}" class="header__img">
+					{% endif %}
+					</li>
 					<li>
 						<p class="mobile__settings--name">{{ app.user.name }}</p>
 					</li>

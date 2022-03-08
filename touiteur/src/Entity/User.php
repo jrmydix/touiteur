@@ -47,6 +47,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'recipient', targetEntity: Message::class, orphanRemoval: true)]
     private $message_received;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $picture;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -251,6 +254,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $messageReceived->setRecipient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
