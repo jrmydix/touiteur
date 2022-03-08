@@ -43,6 +43,7 @@
 					{% elseif app.request.get('_route') == 'app_touite_show' %}Touite
 					{% elseif app.request.get('_route') == 'app_touite_edit' %}Modifier le touite
 					{% elseif app.request.get('_route') == 'app_user' %}{{ user.name }}
+					{% elseif app.request.get('_route') == 'app_user_edit' %}Éditer le profil
 					{% else %}404
 				{% endif %}
 			</h1>

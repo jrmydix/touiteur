@@ -23,10 +23,6 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Nom & Prénom',
                 ],
             ])
-            ->add('picture', FileType::class, [
-                'mapped' => false,
-                'required' => false
-            ])
             ->add('email', EmailType::class, [
                 'attr' => [
                     'placeholder' => 'Email',
