@@ -50,6 +50,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $picture;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $banner;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $bio;
+
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private $location;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -266,6 +275,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getBanner(): ?string
+    {
+        return $this->banner;
+    }
+
+    public function setBanner(?string $banner): self
+    {
+        $this->banner = $banner;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(?string $bio): self
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }

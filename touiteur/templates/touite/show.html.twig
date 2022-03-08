@@ -27,7 +27,7 @@
 				<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ touite.author }}">
 			{% endif %}
 			<div class="author__infos--text">
-				<p class="author__infos--name">{{ touite.author }}
+				<a class="author__infos--name" href="/user/{{ touite.author.id }}">{{ touite.author }}
 					{% if touite.author.isVerified %}
 						<svg class="touite__author--verified" viewbox="0 0 24 24" aria-label="Compte certifié">
 							<g>
@@ -35,7 +35,7 @@
 							</g>
 						</svg>
 					{% endif %}
-				</p>
+				</a>
 				<p>@{{ touite.author.username }}</p>
 			</div>
 		</div>
@@ -116,7 +116,9 @@
 				</div>
 				<div>
 					<p class="comment__author">
-						<span>{{ comment.author }}</span>
+						<span>
+							<a href="/user/{{ comment.author.id }}">{{ comment.author }}</a>
+						</span>
 
 						{% if comment.author.isVerified %}
 							<svg class="touite__author--verified" viewbox="0 0 24 24" aria-label="Compte certifié">

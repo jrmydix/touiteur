@@ -17,12 +17,6 @@ a.touite__container {
   color: rgb(83, 100, 113);
   margin-bottom: 8px;
 
-  &:hover {
-    span {
-      text-decoration: underline;
-    }
-  }
-
   span {
     color: $text;
     font-weight: 700;

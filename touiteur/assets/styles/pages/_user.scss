@@ -1,0 +1,79 @@
+.user {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 0 58px 0;
+
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 15px;
+    line-height: 20px;
+    transform: translateY(-41px);
+    position: relative;
+  }
+
+  &__banner {
+    width: 100vw;
+    height: 125px;
+  }
+
+  &__picture {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-bottom: $size;
+  }
+
+  &__name {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+
+  &__username,
+  &__bio,
+  &__location {
+    margin-bottom: $size2;
+  }
+
+  &__username,
+  &__location,
+  &__stats {
+    color: rgb(83, 100, 113);
+  }
+
+  &__location svg {
+    width: 18px;
+    height: 18px;
+    top: 0.25em;
+    position: relative;
+    fill: rgb(83, 100, 113);
+  }
+
+  &__stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: $size5;
+
+    span {
+      color: $text;
+      font-weight: 700;
+    }
+  }
+
+  &__touites {
+    transform: translateY(-37px);
+    display: flex;
+    flex-direction: column-reverse;
+
+    &--title {
+      color: $text;
+      font-weight: 700;
+      border-bottom: 4px solid $primary-color;
+      padding-bottom: $size;
+      border-radius: 2px;
+    }
+  }
+}

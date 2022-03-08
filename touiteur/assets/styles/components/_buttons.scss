@@ -24,6 +24,20 @@
     padding: 6px $size3;
   }
 
+  &--edit {
+    padding: 6px $size3;
+    position: absolute;
+    width: unset;
+    margin-left: unset;
+    right: $size2;
+    top: $size2 + 41px;
+    font-weight: 700;
+    background-color: transparent;
+    color: $text;
+    border-color: rgb(207, 217, 222);
+    padding: $size $size2;
+  }
+
   &--answer {
     padding: $size $size2;
   }
