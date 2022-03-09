@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\MessageType;
+use App\Form\MessageShowType;
 use App\Repository\MessageRepository;
 
 class MessagesController extends AbstractController
@@ -52,21 +53,33 @@ class MessagesController extends AbstractController
     }
 
     #[Route('/messages/{id}', name: 'app_messages_show', methods: ['GET', 'POST'])]
-    public function show(Message $message, Request $request, MessageRepository $messageRepository): Response
+    public function show(Message $messageId, Request $request, MessageRepository $messageRepository): Response
     {
-        $messageNew = new Message();
-        $messageForm = $this->createForm(MessageType::class, $messageNew);
+        $message = new Message();
+        $messageForm = $this->createForm(MessageShowType::class, $message);
         $messageForm->handleRequest($request);
 
+        $sender = $messageId->getSender();
+        $recipient = $messageId->getRecipient();
+
+        $allMessages = $messageRepository->findByParticipants($sender, $recipient);
+
         if ($messageForm->isSubmitted() && $messageForm->isValid()) {
-            $messageNew->setSender($this->getUser());
-            $messageRepository->add($messageNew);
+            $message->setSender($this->getUser());
+
+            if ($this->getUser() === $recipient) {
+                $message->setRecipient($sender);
+            } else {
+                $message->setRecipient($recipient);
+            }
+
+            $messageRepository->add($message);
 
             return $this->redirectToRoute('app_messages_show', ['id' => $message->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('messages/show.html.twig', [
-            'message' => $message,
+            'messages' => $allMessages,
             'messageForm' => $messageForm->createView()
         ]);
     }

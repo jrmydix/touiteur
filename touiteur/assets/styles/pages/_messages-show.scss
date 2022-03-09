@@ -1,0 +1,80 @@
+.messages--show {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 16px 58px 16px;
+  justify-content: flex-end;
+  gap: $size2;
+
+  label {
+    display: none;
+  }
+}
+
+.message--sent {
+  align-self: flex-end;
+  text-align: end;
+}
+
+.message--received {
+  align-self: flex-start;
+  text-align: start;
+}
+
+.message--sent,
+.message--received {
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.message__date {
+  font-size: 12px;
+  line-height: 16px;
+  color: rgb(83, 100, 113);
+  font-weight: 300;
+  margin-top: 2px;
+}
+
+.message__bubble--sent {
+  text-align: center;
+  background-color: $primary-color;
+  color: #fff;
+  padding: $size2;
+  border-radius: $size2;
+  border-bottom-right-radius: 0px;
+}
+
+.message__bubble--received {
+  text-align: center;
+  background-color: #eff3f4;
+  color: $text;
+  padding: $size2;
+  border-radius: $size2;
+  border-bottom-left-radius: 0px;
+}
+
+.message--send {
+  width: 80%;
+  margin-left: $size2;
+  position: relative;
+
+  input {
+    border-radius: $size4;
+  }
+
+  button {
+    position: absolute;
+    right: -32px;
+    top: 6px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+
+    svg {
+      width: 20px;
+      top: 0.15em;
+      position: relative;
+      height: 20px;
+      fill: $primary-color;
+    }
+  }
+}

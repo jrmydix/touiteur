@@ -60,6 +60,22 @@ class MessageRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Message[] Returns an array of Message objects
+     */
+    public function findByParticipants($user, $userTwo)
+    {
+        return $this->createQueryBuilder('m')
+            ->setParameter('user', $user)
+            ->setParameter('user2', $userTwo)
+            ->where('m.sender = :user AND m.recipient =:user2')
+            ->orWhere('m.sender = :user2 AND m.recipient = :user')
+            ->groupBy('m.date')
+            ->orderBy('m.date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     /*
     public function findOneBySomeField($value): ?Message
     {

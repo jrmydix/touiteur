@@ -13,7 +13,7 @@
 				{% set displayName = message.sender %}
 			{% endif %}
 
-			<a class="messages__container" href="{{ path('app_messages_show', {id: displayName.id}) }}">
+			<a class="messages__container" href="{{ path('app_messages_show', {id: message.id}) }}">
 				<div>
 					{% if displayName.picture %}
 						<img src="{{ asset('uploads/') }}{{ displayName.picture }}" alt="{{ displayName }}" class="comment__author--img">
