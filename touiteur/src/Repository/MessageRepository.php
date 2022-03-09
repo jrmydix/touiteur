@@ -54,7 +54,7 @@ class MessageRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->where('m.sender = :user')
             ->orWhere('m.recipient = :user')
-            ->groupBy('m.recipient')
+            ->groupBy('m.date')
             ->orderBy('m.date', 'DESC')
             ->getQuery()
             ->getResult();

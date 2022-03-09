@@ -15,8 +15,19 @@ class MessagesController extends AbstractController
     #[Route('/messages', name: 'app_messages')]
     public function index(MessageRepository $messageRepository): Response
     {
+        $allMessages = $messageRepository->findByUser($this->getUser());
+        $correspondentsId = [];
+        $messages = [];
+        foreach ($allMessages as $message) {
+            $correspondent = $message->getSender() === $this->getUser() ? $message->getRecipient() : $message->getSender();
+            if (!in_array($correspondent->getid(), $correspondentsId)) {
+                $correspondentsId[] = $correspondent->getId();
+                $messages[] = $message;
+            }
+        }
+
         return $this->render('messages/index.html.twig', [
-            'messages' => $messageRepository->findByUser($this->getUser()),
+            'messages' => $messages,
             'controller_name' => 'MessagesController',
         ]);
     }
