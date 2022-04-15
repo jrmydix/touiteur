@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Touite;
 use App\Entity\Comment;
+use App\Entity\User;
 use App\Form\TouiteType;
 use App\Form\CommentType;
 use App\Repository\TouiteRepository;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/')]
 class TouiteController extends AbstractController
@@ -88,6 +90,26 @@ class TouiteController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$touite->getId(), $request->request->get('_token'))) {
             $touiteRepository->remove($touite);
         }
+
+        return $this->redirectToRoute('app_touite_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/like/{id}', name: 'app_touite_like', methods: ['GET'])]
+    public function like(UserInterface $user, Touite $touite, TouiteRepository $touiteRepository): Response
+    {
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $likes = $user->getLikes();
+
+        if ($likes->contains($touite)) {
+            $touite->removeLike($user);
+        } else {
+            $touite->addLike($user);
+        }
+
+        $touiteRepository->add($touite);
 
         return $this->redirectToRoute('app_touite_index', [], Response::HTTP_SEE_OTHER);
     }

@@ -69,11 +69,21 @@
     flex-direction: column-reverse;
 
     &--title {
-      color: $text;
-      font-weight: 700;
-      border-bottom: 4px solid $primary-color;
-      padding-bottom: $size;
-      border-radius: 2px;
+      display: flex;
+      gap: $size3;
+
+      a {
+        cursor: pointer;
+        color: $text;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 0 $size $size;
+
+        &.active {
+          border-radius: 2px;
+          border-bottom: 4px solid $primary-color;
+        }
+      }
     }
   }
 }

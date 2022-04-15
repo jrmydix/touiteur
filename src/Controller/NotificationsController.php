@@ -11,6 +11,10 @@ class NotificationsController extends AbstractController
     #[Route('/notifications', name: 'app_notifications')]
     public function index(): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('notifications/index.html.twig', [
             'controller_name' => 'NotificationsController',
         ]);

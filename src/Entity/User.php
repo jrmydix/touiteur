@@ -59,11 +59,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $location;
 
+    #[ORM\ManyToMany(targetEntity: Touite::class, mappedBy: 'likes')]
+    private $likes;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->message_sent = new ArrayCollection();
         $this->message_received = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -311,6 +315,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLocation(?string $location): self
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Touite>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Touite $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->addLike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Touite $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            $like->removeLike($this);
+        }
 
         return $this;
     }

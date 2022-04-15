@@ -23,6 +23,16 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/user/{id}/likes', name: 'app_user_liked')]
+    public function liked(User $user): Response
+    {
+        return $this->render('user/likes.html.twig', [
+            'user' => $user,
+            'touites' => $user->getLikes(),
+            'controller_name' => 'UserController',
+        ]);
+    }
+
     #[Route('/user/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {

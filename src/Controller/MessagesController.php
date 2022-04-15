@@ -16,6 +16,10 @@ class MessagesController extends AbstractController
     #[Route('/messages', name: 'app_messages')]
     public function index(MessageRepository $messageRepository): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+        
         $allMessages = $messageRepository->findByUser($this->getUser());
         $correspondentsId = [];
         $messages = [];
