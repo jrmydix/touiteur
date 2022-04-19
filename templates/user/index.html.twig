@@ -15,6 +15,13 @@
 		<div class="container">
 			{% if user == app.user %}
 				<a href="{{ path('app_user_edit', {'id': app.user.id}) }}" class="btn btn--edit">Éditer le profil</a>
+
+			{% else %}
+				{% if user in app.user.following %}
+					<a href="{{ path('app_user_follow', {'id': user.id}) }}" class="btn btn--follow">Abonné</a>
+				{% else %}
+					<a href="{{ path('app_user_follow', {'id': user.id}) }}" class="btn btn--follow">Suivre</a>
+				{% endif %}
 			{% endif %}
 
 			{% if user.picture %}
@@ -55,13 +62,21 @@
 
 				<div class="user__stats">
 					<p>
-						{# {{user.followers}} #}
-						<span>69</span>
-						abonnements</p>
+						<span>{{ user.following|length }}</span>
+						{% if user.following|length == 1 %}
+							abonnement
+						{% else %}
+							abonnements
+						{% endif %}
+					</p>
 					<p>
-						{# {{user.following}} #}
-						<span>420</span>
-						abonnés</p>
+						<span>0</span>
+						{% if user.following|length == 1 %}
+							abonné
+						{% else %}
+							abonnés
+						{% endif %}
+					</p>
 				</div>
 			</div>
 

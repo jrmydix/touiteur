@@ -111,6 +111,6 @@ class TouiteController extends AbstractController
 
         $touiteRepository->add($touite);
 
-        return $this->redirectToRoute('app_touite_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_touite_show', ['id' => $touite->getId()], Response::HTTP_SEE_OTHER);
     }
 }

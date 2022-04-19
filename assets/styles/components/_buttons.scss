@@ -39,6 +39,21 @@
     text-decoration: none;
   }
 
+  &--follow {
+    padding: 6px $size3;
+    position: absolute;
+    width: unset;
+    margin-left: unset;
+    right: $size2;
+    top: $size2 + 41px;
+    font-weight: 700;
+    background-color: #0f1419;
+    color: #fff;
+    border-color: #0f1419;
+    padding: $size $size2;
+    text-decoration: none;
+  }
+
   &--answer {
     padding: $size $size2;
   }

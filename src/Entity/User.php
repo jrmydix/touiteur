@@ -62,12 +62,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Touite::class, mappedBy: 'likes')]
     private $likes;
 
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'following')]
+    private $following;
+
+    // #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'follower')]
+    // private $follower;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->message_sent = new ArrayCollection();
         $this->message_received = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->following = new ArrayCollection();
+        // $this->follower = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -345,4 +353,52 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getFollowing(): Collection
+    {
+        return $this->following;
+    }
+
+    public function addFollowing(self $following): self
+    {
+        if (!$this->following->contains($following)) {
+            $this->following[] = $following;
+        }
+
+        return $this;
+    }
+
+    public function removeFollowing(self $following): self
+    {
+        $this->following->removeElement($following);
+
+        return $this;
+    }
+
+    // /**
+    //  * @return Collection<int, self>
+    //  */
+    // public function getFollower(): Collection
+    // {
+    //     return $this->follower;
+    // }
+
+    // public function addFollower(self $follower): self
+    // {
+    //     if (!$this->follower->contains($follower)) {
+    //         $this->follower[] = $follower;
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeFollower(self $follower): self
+    // {
+    //     $this->follower->removeElement($follower);
+
+    //     return $this;
+    // }
 }

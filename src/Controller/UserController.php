@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Repository\TouiteRepository;
 use App\Repository\UserRepository;
 use App\Form\UserEditType;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserController extends AbstractController
 {
@@ -74,5 +75,25 @@ class UserController extends AbstractController
             'user' => $user,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/user/{id}/follow', name: 'app_user_follow', methods: ['GET'])]
+    public function follow(UserInterface $user, User $targetUser, UserRepository $userRepository): Response
+    {
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $followings = $user->getFollowing();
+
+        if ($followings->contains($targetUser)) {
+            $user->removeFollowing($targetUser);
+        } else {
+            $user->addFollowing($targetUser);
+        }
+
+        $userRepository->add($user);
+
+        return $this->redirectToRoute('app_user', ['id' => $targetUser->getId()], Response::HTTP_SEE_OTHER);
     }
 }
