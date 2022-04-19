@@ -1,0 +1,39 @@
+.heart {
+  background-image: url("/assets/images/like_animation.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 2900%;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: -70%;
+  left: -85%;
+
+  &--relative {
+    position: relative;
+  }
+
+  &__svg {
+    &.animating {
+      opacity: 0;
+    }
+
+    &.liked {
+      opacity: 1;
+      fill: #f91880;
+    }
+  }
+}
+
+.liked {
+  animation: heart-burst 0.8s steps(28) 1;
+}
+
+@keyframes heart-burst {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
