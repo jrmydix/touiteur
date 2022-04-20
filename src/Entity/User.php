@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping\JoinTable;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -63,10 +64,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $likes;
 
     #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'following')]
+    #[JoinTable(name: "user_following")]
     private $following;
 
-    // #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'follower')]
-    // private $follower;
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'follower')]
+    #[JoinTable(name: "user_follower")]
+    private $follower;
 
     public function __construct()
     {
@@ -75,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->message_received = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->following = new ArrayCollection();
-        // $this->follower = new ArrayCollection();
+        $this->follower = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -378,27 +381,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // /**
-    //  * @return Collection<int, self>
-    //  */
-    // public function getFollower(): Collection
-    // {
-    //     return $this->follower;
-    // }
+    /**
+     * @return Collection<int, self>
+     */
+    public function getFollower(): Collection
+    {
+        return $this->follower;
+    }
 
-    // public function addFollower(self $follower): self
-    // {
-    //     if (!$this->follower->contains($follower)) {
-    //         $this->follower[] = $follower;
-    //     }
+    public function addFollower(self $follower): self
+    {
+        if (!$this->follower->contains($follower)) {
+            $this->follower[] = $follower;
+        }
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
-    // public function removeFollower(self $follower): self
-    // {
-    //     $this->follower->removeElement($follower);
+    public function removeFollower(self $follower): self
+    {
+        $this->follower->removeElement($follower);
 
-    //     return $this;
-    // }
+        return $this;
+    }
 }

@@ -70,8 +70,8 @@
 						{% endif %}
 					</p>
 					<p>
-						<span>0</span>
-						{% if user.following|length == 1 %}
+						<span>{{ user.follower|length }}</span>
+						{% if user.follower|length == 1 %}
 							abonné
 						{% else %}
 							abonnés

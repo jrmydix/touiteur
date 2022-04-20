@@ -85,14 +85,18 @@ class UserController extends AbstractController
         }
 
         $followings = $user->getFollowing();
+        $followers = $targetUser->getFollower();
 
-        if ($followings->contains($targetUser)) {
+        if ($followings->contains($targetUser) && $followers->contains($user)) {
             $user->removeFollowing($targetUser);
+            $targetUser->removeFollower($user);
         } else {
             $user->addFollowing($targetUser);
+            $targetUser->addFollower($user);
         }
 
         $userRepository->add($user);
+        $userRepository->add($targetUser);
 
         return $this->redirectToRoute('app_user', ['id' => $targetUser->getId()], Response::HTTP_SEE_OTHER);
     }
