@@ -33,6 +33,20 @@ class TouiteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $uploadedMedia = $form['media']->getData();
+
+            if ($uploadedMedia) {
+                $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+                $picture = urlencode(($this->getUser()->getUsername()).'-'.uniqid().'.'.$uploadedMedia->guessExtension());
+                
+                $uploadedMedia->move(
+                    $destination,
+                    $picture
+                );
+
+                $touite->setMedia($picture);
+            }
+
             $touite->setAuthor($this->getUser());
 
             $touiteRepository->add($touite);

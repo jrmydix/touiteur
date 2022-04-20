@@ -51,7 +51,7 @@ class TouiteRepository extends ServiceEntityRepository
     public function findAllByAuthorWithMedia($user)
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.image IS NOT NULL')
+            ->andWhere('t.media IS NOT NULL')
             ->andWhere('t.author = :val')
             ->setParameter('val', $user)
             ->orderBy('t.id', 'ASC')

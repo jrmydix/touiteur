@@ -41,6 +41,11 @@
 		</div>
 
 		<p class="touite__content">{{ touite.content }}</p>
+
+		{% if touite.media %}
+			<img src="{{ asset('uploads/') }}{{ touite.media }}" alt="{{ touite.content }}" style="border-radius: 16px; width: 100%; height: auto; margin-bottom: 12px;">
+		{% endif %}
+
 		<p class="touite__date">{{ touite.date ? touite.date|date('H:i · d/m/y') : '' }}
 			· Touiteur</p>
 

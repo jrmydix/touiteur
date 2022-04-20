@@ -31,6 +31,9 @@ class Touite
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likes')]
     private $likes;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $media;
+
     public function __toString(){
         return $this->id;
     }
@@ -133,6 +136,18 @@ class Touite
     public function removeLike(User $like): self
     {
         $this->likes->removeElement($like);
+
+        return $this;
+    }
+
+    public function getMedia(): ?string
+    {
+        return $this->media;
+    }
+
+    public function setMedia(?string $media): self
+    {
+        $this->media = $media;
 
         return $this;
     }

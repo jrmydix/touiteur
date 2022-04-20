@@ -45,6 +45,9 @@
 							{% endif %}
 						</p>
 						<p>{{ touite.content }}</p>
+						{% if touite.media %}
+							<img src="{{ asset('uploads/') }}{{ touite.media }}" alt="{{ touite.content }}" class="touite__media">
+						{% endif %}
 						<div class="touite__actions">
 							<div class="touite__actions--comment" title="Répondre">
 								<svg viewbox="0 0 24 24" aria-hidden="true">

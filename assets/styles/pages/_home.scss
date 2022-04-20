@@ -105,6 +105,12 @@ a.touite__container {
   }
 }
 
+.touite__media {
+  border-radius: $size2;
+  max-width: 100%;
+  margin-top: 12px;
+}
+
 html.dark {
   .touite__container {
     color: $text-dark;
