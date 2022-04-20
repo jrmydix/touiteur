@@ -9,7 +9,7 @@
 {% block body %}
 	<main class="user">
 		{{ include('user/_user_infos.html.twig') }}
-
+		
 		<div class="user__touites">
 			{% for touite in touites %}
 				<a href="{{ path('app_touite_show', {'id': touite.id}) }}" class="touite__container">
@@ -87,7 +87,7 @@
 				</a>
 			{% else %}
 				<p>{{ user.name }}
-					n'a aimé aucun touite 😢</p>
+					n'a publié aucun média 😢</p>
 			{% endfor %}
 		</div>
 

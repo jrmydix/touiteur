@@ -10,7 +10,7 @@ use App\Entity\User;
 use App\Repository\TouiteRepository;
 use App\Repository\UserRepository;
 use App\Form\UserEditType;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Repository\CommentRepository;
 
 class UserController extends AbstractController
 {
@@ -30,6 +30,26 @@ class UserController extends AbstractController
         return $this->render('user/likes.html.twig', [
             'user' => $user,
             'touites' => $user->getLikes(),
+            'controller_name' => 'UserController',
+        ]);
+    }
+
+    #[Route('/user/{id}/replies', name: 'app_user_replies')]
+    public function replies(User $user, CommentRepository $commentRepository): Response
+    {
+        return $this->render('user/replies.html.twig', [
+            'user' => $user,
+            'touites' => $commentRepository->findByAuthor($user),
+            'controller_name' => 'UserController',
+        ]);
+    }
+
+    #[Route('/user/{id}/media', name: 'app_user_media')]
+    public function media(User $user, TouiteRepository $touiteRepository): Response
+    {
+        return $this->render('user/media.html.twig', [
+            'user' => $user,
+            'touites' => $touiteRepository->findAllByAuthorWithMedia($user),
             'controller_name' => 'UserController',
         ]);
     }
@@ -78,8 +98,10 @@ class UserController extends AbstractController
     }
 
     #[Route('/user/{id}/follow', name: 'app_user_follow', methods: ['GET'])]
-    public function follow(UserInterface $user, User $targetUser, UserRepository $userRepository): Response
+    public function follow(User $targetUser, UserRepository $userRepository): Response
     {
+        $user = $this->getUser();
+
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }

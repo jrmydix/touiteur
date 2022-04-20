@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/')]
 class TouiteController extends AbstractController
@@ -95,8 +94,10 @@ class TouiteController extends AbstractController
     }
 
     #[Route('/like/{id}', name: 'app_touite_like', methods: ['GET'])]
-    public function like(UserInterface $user, Touite $touite, TouiteRepository $touiteRepository): Response
+    public function like(Touite $touite, TouiteRepository $touiteRepository): Response
     {
+        $user = $this->getUser();
+        
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }

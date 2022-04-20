@@ -70,20 +70,36 @@
 
     &--title {
       display: flex;
-      gap: $size3;
+      gap: $size2;
+      justify-content: space-between;
 
       a {
         cursor: pointer;
-        color: $text;
+        color: rgb(83, 100, 113);
         font-weight: 700;
         text-decoration: none;
         padding: 0 $size $size;
 
         &.active {
+          color: $text;
           border-radius: 2px;
           border-bottom: 4px solid $primary-color;
         }
       }
+    }
+  }
+}
+
+.touite__reply {
+  color: rgb(83, 100, 113);
+  margin-bottom: 8px;
+
+  span {
+    color: $primary-color;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
     }
   }
 }

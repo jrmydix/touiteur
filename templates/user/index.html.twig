@@ -7,85 +7,8 @@
 
 {% block body %}
 	<main class="user">
-		{% if user.banner %}
-			<img src="{{ asset('uploads/') }}{{ user.banner }}" alt="{{ user }}" class="user__banner">
-		{% else %}
-			<img src="{{ asset('build/images/user-default-banner.jpg') }}" alt="{{ user }}" class="user__banner">
-		{% endif %}
-		<div class="container">
-			{% if user == app.user %}
-				<a href="{{ path('app_user_edit', {'id': app.user.id}) }}" class="btn btn--edit">Éditer le profil</a>
-
-			{% else %}
-				{% if user in app.user.following %}
-					<a href="{{ path('app_user_follow', {'id': user.id}) }}" class="btn btn--follow">Abonné</a>
-				{% else %}
-					<a href="{{ path('app_user_follow', {'id': user.id}) }}" class="btn btn--follow">Suivre</a>
-				{% endif %}
-			{% endif %}
-
-			{% if user.picture %}
-				<img src="{{ asset('uploads/') }}{{ user.picture }}" alt="{{ user }}" class="user__picture">
-			{% else %}
-				<img src="{{ asset('build/images/user-default.jpg') }}" alt="{{ user }}" class="user__picture">
-			{% endif %}
-			<div>
-				<p class="user__name">{{user.name}}
-					{% if user.isVerified %}
-						<svg class="touite__author--verified" viewbox="0 0 24 24" aria-label="Compte certifié">
-							<g>
-								<path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path>
-							</g>
-						</svg>
-					{% endif %}
-				</p>
-
-				<p class="user__username">@{{user.username}}</p>
-
-				{% if user.bio %}
-					<p class="user__bio">
-						{{user.bio}}
-					</p>
-				{% endif %}
-
-				{% if user.location %}
-					<p class="user__location">
-						<svg viewbox="0 0 24 24" aria-hidden="true">
-							<g>
-								<path d="M12 14.315c-2.088 0-3.787-1.698-3.787-3.786S9.913 6.74 12 6.74s3.787 1.7 3.787 3.787-1.7 3.785-3.787 3.785zm0-6.073c-1.26 0-2.287 1.026-2.287 2.287S10.74 12.814 12 12.814s2.287-1.025 2.287-2.286S13.26 8.24 12 8.24z"></path>
-								<path d="M20.692 10.69C20.692 5.9 16.792 2 12 2s-8.692 3.9-8.692 8.69c0 1.902.603 3.708 1.743 5.223l.003-.002.007.015c1.628 2.07 6.278 5.757 6.475 5.912.138.11.302.163.465.163.163 0 .327-.053.465-.162.197-.155 4.847-3.84 6.475-5.912l.007-.014.002.002c1.14-1.516 1.742-3.32 1.742-5.223zM12 20.29c-1.224-.99-4.52-3.715-5.756-5.285-.94-1.25-1.436-2.742-1.436-4.312C4.808 6.727 8.035 3.5 12 3.5s7.192 3.226 7.192 7.19c0 1.57-.497 3.062-1.436 4.313-1.236 1.57-4.532 4.294-5.756 5.285z"></path>
-							</g>
-						</svg>
-						{{user.location}}
-					</p>
-				{% endif %}
-
-				<div class="user__stats">
-					<p>
-						<span>{{ user.following|length }}</span>
-						{% if user.following|length == 1 %}
-							abonnement
-						{% else %}
-							abonnements
-						{% endif %}
-					</p>
-					<p>
-						<span>{{ user.follower|length }}</span>
-						{% if user.follower|length == 1 %}
-							abonné
-						{% else %}
-							abonnés
-						{% endif %}
-					</p>
-				</div>
-			</div>
-
-			<div class="user__touites--title">
-				<a href="{{ path('app_user', {'id': user.id}) }}" class="active">Touites de
-					{{ user.name }}</a>
-				<a href="{{ path('app_user_liked', {'id': user.id}) }}">J'aime</a>
-			</div>
-		</div>
+		{{ include('user/_user_infos.html.twig') }}
+		
 		<div class="user__touites">
 			{% for touite in touites %}
 				<a href="{{ path('app_touite_show', {'id': touite.id}) }}" class="touite__container">

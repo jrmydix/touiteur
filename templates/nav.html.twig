@@ -37,6 +37,10 @@
 					{{ user.name }}
 				{% elseif app.request.get('_route') == 'app_user_liked' %}
 					{{ user.name }}
+				{% elseif app.request.get('_route') == 'app_user_replies' %}
+					{{ user.name }}
+				{% elseif app.request.get('_route') == 'app_user_media' %}
+					{{ user.name }}
 					{% elseif app.request.get('_route') == 'app_user_edit' %}Éditer le profil
 					{% else %}404
 				{% endif %}
