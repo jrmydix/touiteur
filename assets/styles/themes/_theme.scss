@@ -30,3 +30,41 @@ html.dark {
   text-align: center;
   padding: 48px 32px 62px 32px;
 }
+
+@media (min-width: 769px) {
+  body {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+  }
+
+  header {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .header {
+    position: sticky;
+    padding: 12px 16px;
+
+    &__img,
+    &__img--svg {
+      display: none;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+  .mobile__settings,
+  .mobile__nav {
+    display: none;
+  }
+
+  .desktop__nav {
+    display: unset;
+  }
+
+  main {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+}

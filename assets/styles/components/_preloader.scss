@@ -1,0 +1,24 @@
+.preloader {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: $bg;
+  z-index: 99999;
+
+  &.loaded {
+    display: none;
+  }
+
+  svg {
+    max-width: 64px;
+  }
+}
+
+html.dark {
+  .preloader {
+    background-color: $bg-dark;
+  }
+}

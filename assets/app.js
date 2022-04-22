@@ -1,6 +1,13 @@
 import "./styles/app.scss";
 
 /**
+ * Preloader
+ */
+window.addEventListener("load", function () {
+  document.querySelector(".preloader").classList.add("loaded");
+});
+
+/**
  * Gestion de la barre de latérale mobile
  */
 const settings = document.querySelector(".mobile__settings");
