@@ -100,7 +100,7 @@ class TouiteController extends AbstractController
     #[Route('/status/{id}', name: 'app_touite_delete', methods: ['POST'])]
     public function delete(Request $request, Touite $touite, TouiteRepository $touiteRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$touite->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $touite->getId(), $request->request->get('_token'))) {
             $touiteRepository->remove($touite);
         }
 

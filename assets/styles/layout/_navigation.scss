@@ -5,7 +5,6 @@
   right: 0;
   border-top: 1px solid $link-hover;
   padding: 8px 32px;
-  transition: border-top 0.5s;
   background-color: $bg;
   z-index: 99;
 
@@ -17,7 +16,6 @@
 
     & li {
       list-style-type: none;
-      transition: background-color 0.2s;
       border-radius: 50%;
       padding: 8px;
       width: 42px;
@@ -46,7 +44,6 @@
   right: 0;
   border-bottom: 1px solid $link-hover;
   padding: 8px 16px;
-  transition: border-bottom 0.5s;
   background-color: $bg;
   z-index: 99;
 
@@ -87,7 +84,7 @@
   position: fixed;
   z-index: 999;
   background: $bg;
-  transition: left 0.3s, background 0.2s, border-right 0.2s;
+  transition: left 0.3s;
   text-align: left;
   font-size: 15px;
   line-height: 20px;
@@ -113,6 +110,8 @@
     margin-bottom: 32px;
 
     svg {
+      transform: translate(24px);
+
       &:hover {
         cursor: pointer;
       }
@@ -226,7 +225,8 @@
           height: 26.25px;
         }
 
-        a {
+        a,
+        p {
           padding: 12px 16px;
           font-size: 20px;
           text-decoration: none;
@@ -245,6 +245,7 @@
         }
 
         &:hover {
+          cursor: pointer;
           background-color: rgba(15, 20, 25, 0.1);
         }
       }
@@ -280,6 +281,25 @@ html.dark {
     &--links {
       li:hover {
         background-color: $link-hover-dark;
+      }
+    }
+  }
+
+  .desktop__nav {
+    border-color: #292c2f;
+
+    nav {
+      ul {
+        & li {
+          a,
+          p {
+            color: $text-dark;
+          }
+
+          &:hover {
+            background-color: rgba(231, 233, 234, 0.1);
+          }
+        }
       }
     }
   }

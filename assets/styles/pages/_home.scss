@@ -189,3 +189,9 @@ html.dark {
   padding: 48px 0 58px 0;
   justify-content: flex-end;
 }
+
+@media (min-width: 769px) {
+  .home {
+    padding: 48px 0 0 0;
+  }
+}

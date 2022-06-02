@@ -63,6 +63,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Touite::class, mappedBy: 'likes')]
     private $likes;
 
+    #[ORM\OneToMany(targetEntity: Touite::class, mappedBy: 'author')]
+    private $touites;
+
     #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'following')]
     #[JoinTable(name: "user_following")]
     private $following;
@@ -79,6 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->likes = new ArrayCollection();
         $this->following = new ArrayCollection();
         $this->follower = new ArrayCollection();
+        $this->touites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -355,6 +359,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Touite>
+     */
+    public function getTouites(): Collection
+    {
+        return $this->touites;
     }
 
     /**
